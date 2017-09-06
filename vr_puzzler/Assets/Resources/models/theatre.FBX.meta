@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: c540f29d030cbf940951d1257a0fa613
+timeCreated: 1504722061
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: bulb_00
+    100002: bulb_01
+    100004: bulb_02
+    100006: bulb_03
+    100008: bulb_04
+    100010: bulb_05
+    100012: bulb_06
+    100014: bulb_07
+    100016: bulb_08
+    100018: bulb_09
+    100020: bulb_10
+    100022: bulb_11
+    100024: bulb_12
+    100026: bulb_13
+    100028: bulb_14
+    100030: bulb_15
+    100032: Display
+    100034: Rectangle004
+    100036: room
+    100038: stage
+    100040: stage 1
+    100042: //RootNode
+    100044: floor
+    400000: bulb_00
+    400002: bulb_01
+    400004: bulb_02
+    400006: bulb_03
+    400008: bulb_04
+    400010: bulb_05
+    400012: bulb_06
+    400014: bulb_07
+    400016: bulb_08
+    400018: bulb_09
+    400020: bulb_10
+    400022: bulb_11
+    400024: bulb_12
+    400026: bulb_13
+    400028: bulb_14
+    400030: bulb_15
+    400032: Display
+    400034: Rectangle004
+    400036: room
+    400038: stage
+    400040: stage 1
+    400042: //RootNode
+    400044: floor
+    2300000: bulb_00
+    2300002: bulb_01
+    2300004: bulb_02
+    2300006: bulb_03
+    2300008: bulb_04
+    2300010: bulb_05
+    2300012: bulb_06
+    2300014: bulb_07
+    2300016: bulb_08
+    2300018: bulb_09
+    2300020: bulb_10
+    2300022: bulb_11
+    2300024: bulb_12
+    2300026: bulb_13
+    2300028: bulb_14
+    2300030: bulb_15
+    2300032: Display
+    2300034: Rectangle004
+    2300036: room
+    2300038: stage
+    2300040: stage 1
+    2300042: floor
+    3300000: bulb_00
+    3300002: bulb_01
+    3300004: bulb_02
+    3300006: bulb_03
+    3300008: bulb_04
+    3300010: bulb_05
+    3300012: bulb_06
+    3300014: bulb_07
+    3300016: bulb_08
+    3300018: bulb_09
+    3300020: bulb_10
+    3300022: bulb_11
+    3300024: bulb_12
+    3300026: bulb_13
+    3300028: bulb_14
+    3300030: bulb_15
+    3300032: Display
+    3300034: Rectangle004
+    3300036: room
+    3300038: stage
+    3300040: stage 1
+    3300042: floor
+    4300000: room
+    4300002: bulb_00
+    4300004: bulb_01
+    4300006: bulb_02
+    4300008: bulb_03
+    4300010: bulb_04
+    4300012: bulb_05
+    4300014: bulb_06
+    4300016: bulb_07
+    4300018: bulb_09
+    4300020: bulb_08
+    4300022: bulb_10
+    4300024: bulb_11
+    4300026: bulb_12
+    4300028: bulb_13
+    4300030: bulb_14
+    4300032: bulb_15
+    4300034: Rectangle004
+    4300036: Display
+    4300038: stage
+    4300040: stage
+    4300042: floor
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
