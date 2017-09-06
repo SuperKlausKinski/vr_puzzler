@@ -48,7 +48,6 @@ namespace VRPuzzler
             Debug.Log("EventName: " + _eventName);
             if (m_eventDictionary.TryGetValue(_eventName, out _thisEvent))
             {
-                Debug.Log(_thisEvent);
                 _thisEvent.Invoke();
             }
         }

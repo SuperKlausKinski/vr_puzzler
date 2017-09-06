@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using VRPuzzler.Templates;
-
+using UnityEngine.EventSystems;
 namespace VRPuzzler
 {
 
@@ -10,17 +10,19 @@ namespace VRPuzzler
     public class InputController : Singleton<InputController>
     {
 
-        public GameObject EventSystem;
+        
+        public GvrReticlePointer Pointer;
 
         public void DisableInput()
         {
             Debug.Log("input disabled!");
-            EventSystem.SetActive(false);
+            Pointer.enabled = false;
+       
         }
         public void EnableInput()
         {
             Debug.Log("input enabled!");
-            EventSystem.SetActive(true);
+            Pointer.enabled = true;
         }
 
     }

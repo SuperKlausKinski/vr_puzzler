@@ -27,7 +27,8 @@ namespace VRPuzzler
         }
 
         void Start()
-        {        
+        {
+            Debug.Log("start!");
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("INPUTSEQUENCE_COMPLETED", listenForSequenceCompleted);
 
