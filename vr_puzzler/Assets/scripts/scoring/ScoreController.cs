@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 namespace VRPuzzler
 {
     public class ScoreController : MonoBehaviour
     {
-        public Text Text;
+        public TextMeshProUGUI Text;
         private UnityAction listenForScoreIncrease;
 
         void Awake()

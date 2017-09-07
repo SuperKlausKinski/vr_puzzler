@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Resources/scenes/scale_test.unity
     guid: 29f5d970457866b4ab8b697bf7fe1be8
+  - enabled: 1
+    path: Assets/Resources/scenes/Main.unity
+    guid: 6d840b6c8cc46f14e92fa9a094a2cea2

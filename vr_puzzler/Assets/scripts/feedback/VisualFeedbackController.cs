@@ -11,7 +11,10 @@ namespace VRPuzzler
     public class VisualFeedbackController : MonoBehaviour
     {
 
-        public Text Text;
+
+        public Animator VisualFeedbackAnimatior;
+        public uint VisualFeedbackDuration = 1;
+
         private UnityAction listenForRightAnswer;
         private UnityAction listenForWrongAnswer;
 
@@ -23,20 +26,20 @@ namespace VRPuzzler
 
         void Start()
         {
-            Text.text = "Waiting";
+            
             EventManager.Instance.StartListening("RIGHT", listenForRightAnswer);
             EventManager.Instance.StartListening("WRONG", listenForWrongAnswer);
         }
 
         private void RightAnswer()
         {
-            Text.text = "RIGHT!";
-            DOVirtual.DelayedCall(1f, () => Text.text = "Waiting");
+            VisualFeedbackAnimatior.SetTrigger("RIGHT");
+            DOVirtual.DelayedCall(VisualFeedbackDuration, () => VisualFeedbackAnimatior.SetTrigger("IDLE"));
         }
         private void WrongAnswer()
         {
-            Text.text = "Wrong!";
-            DOVirtual.DelayedCall(1f, () => Text.text = "Waiting");
+            VisualFeedbackAnimatior.SetTrigger("WRONG");
+            DOVirtual.DelayedCall(VisualFeedbackDuration, () => VisualFeedbackAnimatior.SetTrigger("IDLE"));
         }
     }
 }
