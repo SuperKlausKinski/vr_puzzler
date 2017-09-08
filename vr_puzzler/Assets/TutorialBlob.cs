@@ -34,6 +34,11 @@ namespace VRPuzzler
             
         }
         //---------------------------------------------------------------------
+        public void PointerHover()
+        {
+            TutorialBlob_Animator.SetTrigger("JUMP");
+        }
+        //---------------------------------------------------------------------
         public void CardClicked(string _cardType)
         {
             if (GameFSM.Instance.Gamestate != GameFSM.GAMESTATES.INTRO) { return; }
