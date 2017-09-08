@@ -9,7 +9,7 @@ namespace VRPuzzler
     public class GameController : Singleton<GameController>
     {
 
-
+        private UnityAction listenForTutorialComplete;
         private UnityAction listenForExit;
         private UnityAction listenForChange;
         private UnityAction listenForSequenceCompleted;
@@ -21,16 +21,19 @@ namespace VRPuzzler
         new void Awake()
         {
             base.Awake();
+            // listeners
             listenForExit = new UnityAction(OnGameStateExit);
             listenForChange = new UnityAction(OnGamstateChange);
             listenForSequenceCompleted = new UnityAction(IncreaseScore);
+            listenForTutorialComplete = new UnityAction(TutorialComplete);
         }
 
         void Start()
         {
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("INPUTSEQUENCE_COMPLETED", listenForSequenceCompleted);
-
+            EventManager.Instance.StartListening("TUTORIAL_COMPLETED", listenForTutorialComplete);
+            StartGame();
         }
 
         private void Init()
@@ -39,9 +42,8 @@ namespace VRPuzzler
         }
 
         public void StartGame()
-        {
-            Debug.Log("Start Game");
-            GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.GAME;
+        {          
+            GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.INTRO;
         }
 
         private void IncreaseScore()
@@ -49,7 +51,12 @@ namespace VRPuzzler
             Score++;
         }
 
-        void OnGamstateChange()
+        private void TutorialComplete()
+        {
+            GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.GAME;
+        }
+
+        private void OnGamstateChange()
         {
 
             switch (GameFSM.Instance.Gamestate)

@@ -19,12 +19,19 @@ namespace VRPuzzler
         public BLOBSTATES Blobstate { get { return m_blobState; } set { changeState(value); } }
         public int BlobID;
         public SequenceController Controller;
+        public AudioClip BlobSound;
         //------------------------------------------------------------------------------------------------------------
         private BLOBSTATES m_blobState;
+        private UnityAction listenForChange;
         //------------------------------------------------------------------------------------------------------------
         void Awake()
         {
             Controller = gameObject.GetComponentInParent<SequenceController>();
+            listenForChange = new UnityAction(OnGameStateChanged);
+        }
+        void Start()
+        {
+            EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
         }
         //------------------------------------------------------------------------------------------------------------
         public void TriggerByController(SequenceParameters _params)
@@ -42,6 +49,23 @@ namespace VRPuzzler
                 Blobstate = BLOBSTATES.SINGING;
                 SendMessageUpwards("ValidateStep", BlobID);
                 transform.DOPunchScale(Vector3.one * 1.05f, 2f).OnComplete(() => OnSingComplete());
+               
+            }
+        }
+        //------------------------------------------------------------------------------------------------------------
+        private void OnGameStateChanged()
+        {
+            switch (GameFSM.Instance.Gamestate)
+            {
+                case (GameFSM.GAMESTATES.INTRO):
+                    gameObject.GetComponent<SphereCollider>().enabled = false;
+                    break;
+                case (GameFSM.GAMESTATES.GAME):
+                    gameObject.GetComponent<SphereCollider>().enabled = true;
+                    break;
+                case (GameFSM.GAMESTATES.FINISH):
+                    gameObject.GetComponent<SphereCollider>().enabled = false;
+                    break;
             }
         }
         //------------------------------------------------------------------------------------------------------------

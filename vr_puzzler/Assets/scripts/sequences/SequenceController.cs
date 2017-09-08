@@ -50,8 +50,7 @@ namespace VRPuzzler
         }
         void Awake()
         {
-            ListenForStateChange = new UnityAction(OnGameStateChanged);
-           
+            ListenForStateChange = new UnityAction(OnGameStateChanged);          
         }
 
         private void OnGameStateChanged()
@@ -83,7 +82,7 @@ namespace VRPuzzler
             {
                 case (SEQUENCESTATES.IDLE):
                     InputController.Instance.DisableInput();
-                    DOVirtual.DelayedCall(1f,()=> SetUpSequence(m_currentSequenceID));                  
+                    DOVirtual.DelayedCall(2f,()=> SetUpSequence(m_currentSequenceID));                  
                     break;
                 case (SEQUENCESTATES.LISTENING):
                     EventManager.Instance.InvokeEvent("LISTEN");
