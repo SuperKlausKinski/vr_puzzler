@@ -10,6 +10,7 @@ namespace VRPuzzler
     public class ScoreController : MonoBehaviour
     {
         public TextMeshProUGUI Text;
+        public GvrAudioSource AudioSource;
         private UnityAction listenForScoreIncrease;
 
         void Awake()
@@ -26,6 +27,7 @@ namespace VRPuzzler
         {
             Debug.Log("SCORE INCREASED!!!");
             Text.text = (GameController.Instance.Score + 1).ToString();
+            AudioSource.Play();
         }
 
 
