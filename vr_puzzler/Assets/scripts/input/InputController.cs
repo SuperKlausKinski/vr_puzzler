@@ -16,13 +16,13 @@ namespace VRPuzzler
         public void DisableInput()
         {
             Debug.Log("input disabled!");
-            Pointer.enabled = false;
+            //Pointer.enabled = false;
        
         }
         public void EnableInput()
         {
             Debug.Log("input enabled!");
-            Pointer.enabled = true;
+           // Pointer.enabled = true;
         }
 
     }

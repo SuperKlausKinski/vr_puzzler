@@ -2070,6 +2070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 582799746}
+  AudioSource: {fileID: 0}
 --- !u!1 &969133521
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,6 +3221,10 @@ Prefab:
     - target: {fileID: 4426728219242602, guid: e138ace8507f1a548b9a20685df9bb68, type: 2}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404044852945954, guid: e138ace8507f1a548b9a20685df9bb68, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e138ace8507f1a548b9a20685df9bb68, type: 2}
