@@ -22,6 +22,12 @@ using UnityEngine;
 namespace Gvr.Internal {
   /// Controller provider that connects to the controller emulator to obtain controller events.
   class EmulatorControllerProvider : IControllerProvider {
+#if UNITY_HAS_GOOGLEVR && UNITY_ANDROID
+    /// Helper class to get Instant Preview controller events if connected.
+    private InstantPreviewControllerProvider instantPreviewControllerProvider =
+      new InstantPreviewControllerProvider();
+#endif // UNITY_HAS_GOOGLEVR && UNITY_ANDROID
+
     private ControllerState state = new ControllerState();
 
     /// Yaw correction due to recentering.
@@ -55,6 +61,15 @@ namespace Gvr.Internal {
     }
 
     public void ReadState(ControllerState outState) {
+#if UNITY_HAS_GOOGLEVR && UNITY_ANDROID
+      if (InstantPreview.Instance != null && InstantPreview.Instance.IsCurrentlyConnected
+          && !EmulatorManager.Instance.Connected) {
+        // Uses Instant Preview to get controller state if connected.
+        instantPreviewControllerProvider.ReadState(outState);
+        return;
+      }
+#endif // UNITY_HAS_GOOGLEVR && UNITY_ANDROID
+      // If Instant Preview is not connected, tries to use the Controller Emulator.
       lock (state) {
         state.connectionState = GvrConnectionState.Connected;
         if (!EmulatorManager.Instance.Connected) {
@@ -112,7 +127,7 @@ namespace Gvr.Internal {
     private void HandleButtonEvent(EmulatorButtonEvent buttonEvent) {
       switch (buttonEvent.code) {
       case EmulatorButtonEvent.ButtonCode.kApp:
-        lock (state) {
+          lock (state) {
           state.appButtonState = buttonEvent.down;
           state.appButtonDown = buttonEvent.down;
           state.appButtonUp = !buttonEvent.down;
@@ -133,7 +148,7 @@ namespace Gvr.Internal {
         }
         break;
       case EmulatorButtonEvent.ButtonCode.kClick:
-        lock (state) {
+      lock (state) {
           state.clickButtonState = buttonEvent.down;
           state.clickButtonDown = buttonEvent.down;
           state.clickButtonUp = !buttonEvent.down;

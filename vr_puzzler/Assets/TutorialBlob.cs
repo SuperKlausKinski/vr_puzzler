@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.Events;
+using System;
 
 namespace VRPuzzler
 {
     public class TutorialBlob : MonoBehaviour
     {
-
         public GameObject[] TutorialStep;
-        public Animator TutorialBlob_Animator;
-        public Animator Door_Animator;
+        public GameObject ContinueCard;
+        public Animator TutorialBlob_Animator;      
+        public GameObject Door;
+        public GvrAudioSource CardFlipAudioSource;
+        public Canvas TutorialCanvas;
         public AudioClip ClickSound;
+        public AudioClip DoorOpen;
+        public AudioClip DoorClose;
+        public AudioClip CardFlipAudioClip;
+        public AudioClip Swosh;
         //---------------------------------------------------------------------
         private int m_currentTutorialStep;
         private UnityAction listenForChange;
+        private UnityAction listenForSequenceComplete;
+        private Animator m_door_Animator;
+        private GvrAudioSource m_door_Audio;
+        private Action m_callBack;
         //---------------------------------------------------------------------
         void Awake()
         {
@@ -23,19 +34,25 @@ namespace VRPuzzler
             {
                 _go.SetActive(false);
             }
+
+            ContinueCard.SetActive(false);
+
             TutorialBlob_Animator.gameObject.SetActive(false);
             listenForChange = new UnityAction(StateChanged);
+            listenForSequenceComplete = new UnityAction(ShowContinueCard);
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
+            EventManager.Instance.StartListening("SEQUENCE_COMPLETED", listenForSequenceComplete);
         }
         //---------------------------------------------------------------------
         void Start()
-        {
-            Debug.Log("START TUTORIAL OBJECT");
-            
+        {      
+            m_door_Animator = Door.GetComponent<Animator>();
+            m_door_Audio = Door.GetComponent<GvrAudioSource>();
         }
         //---------------------------------------------------------------------
         public void PointerHover()
         {
+            Debug.Log("Hover");
             TutorialBlob_Animator.SetTrigger("JUMP");
         }
         //---------------------------------------------------------------------
@@ -47,6 +64,7 @@ namespace VRPuzzler
             {
                 if (m_currentTutorialStep < TutorialStep.Length-1)
                 {
+                                     
                     TutorialBlob_Animator.SetTrigger("SWITCH");
 
                     // Shortly disable input
@@ -54,13 +72,12 @@ namespace VRPuzzler
                     DOVirtual.DelayedCall(1f, () => InputController.Instance.EnableInput());
 
                     // turn off old step, increment steps, turn on new
-                    TutorialStep[m_currentTutorialStep].SetActive(false);
-                    m_currentTutorialStep++;
-                    TutorialStep[m_currentTutorialStep].SetActive(true);
+                    
                 }
                 else
                 {
                     TutorialBlob_Animator.SetTrigger("HIDE");
+                    
                     InputController.Instance.DisableInput();
                     DOVirtual.DelayedCall(2.5f,()=> EventManager.Instance.InvokeEvent("TUTORIAL_COMPLETED"));                 
                 }
@@ -69,6 +86,57 @@ namespace VRPuzzler
             {
                 // show you won card with restart message
             }
+        }
+        //---------------------------------------------------------------------
+        public void ShowContinueCard()
+        {
+            TutorialBlob_Animator.speed = 2;
+            m_door_Animator.speed = 2;
+            TutorialBlob_Animator.gameObject.SetActive(true);
+            OpenDoor();
+            TutorialBlob_Animator.SetTrigger("SHOW");
+            ContinueCard.SetActive(true);
+            InputController.Instance.DisableInput();          
+        }
+        //---------------------------------------------------------------------
+        public void AnimationEnd(string _clip)
+        {
+            if(GameFSM.Instance.Gamestate == GameFSM.GAMESTATES.GAME)
+            {
+                if (_clip == "SHOW")
+                {
+                    TutorialBlob_Animator.SetTrigger("HIDE");
+                }
+                else if (_clip == "HIDE")
+                {
+                    CloseDoor();
+                    ContinueCard.SetActive(false);
+                   
+                }
+            }
+        }
+        //---------------------------------------------------------------------
+        public void CardContentVisibility(int _alpha)
+        {
+            if(_alpha == 0)
+            {
+                TutorialStep[m_currentTutorialStep].SetActive(false);
+                m_currentTutorialStep++;
+                TutorialStep[m_currentTutorialStep].SetActive(true);
+            }
+           
+            TutorialCanvas.GetComponent<CanvasGroup>().alpha = _alpha;
+            if (m_currentTutorialStep < TutorialStep.Length)
+            {
+                CardFlipAudioSource.clip = CardFlipAudioClip;
+                CardFlipAudioSource.Play();
+            }
+        }
+        //---------------------------------------------------------------------
+        public void PlaySwoshAudio()
+        {
+            CardFlipAudioSource.clip = Swosh;
+            CardFlipAudioSource.Play();
         }
         //---------------------------------------------------------------------
         private void StateChanged()
@@ -89,18 +157,34 @@ namespace VRPuzzler
         }
         //---------------------------------------------------------------------
         private void StartTutorial()
-        {
+        {          
             m_currentTutorialStep = 0;
+            TutorialBlob_Animator.speed = 1;
+            m_door_Animator.speed = 1;
+            OpenDoor();
+
             TutorialStep[m_currentTutorialStep].SetActive(true);
             
-            Door_Animator.SetTrigger("OPEN");
             DOVirtual.DelayedCall(1f, () => TutorialBlob_Animator.gameObject.SetActive(true));
             DOVirtual.DelayedCall(1f, () => TutorialBlob_Animator.SetTrigger("SHOW"));
+        }
+        private void OpenDoor()
+        {
+            m_door_Audio.clip = DoorOpen;
+            m_door_Audio.Play();
+            m_door_Animator.SetTrigger("OPEN");
+        }
+        //---------------------------------------------------------------------
+        private void CloseDoor()
+        {
+            m_door_Audio.clip = DoorClose;
+            m_door_Audio.Play();
+            m_door_Animator.SetTrigger("CLOSE");
         }
         //---------------------------------------------------------------------
         private void CleanUpTutorial()
         {
-            Door_Animator.SetTrigger("CLOSE");
+            CloseDoor();
             TutorialBlob_Animator.gameObject.SetActive(false);
         }
         //---------------------------------------------------------------------

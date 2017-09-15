@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VRPuzzler.Templates;
 using UnityEngine.Events;
+using DG.Tweening;
 
 namespace VRPuzzler
 {
@@ -13,9 +14,8 @@ namespace VRPuzzler
         private UnityAction listenForExit;
         private UnityAction listenForChange;
         private UnityAction listenForSequenceCompleted;
- 
 
-
+        
         public int Score { get; private set; }
 
         new void Awake()
@@ -33,7 +33,8 @@ namespace VRPuzzler
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("INPUTSEQUENCE_COMPLETED", listenForSequenceCompleted);
             EventManager.Instance.StartListening("TUTORIAL_COMPLETED", listenForTutorialComplete);
-            StartGame();
+            
+            DOVirtual.DelayedCall(1, () => StartIntro());
         }
 
         private void Init()
@@ -41,9 +42,10 @@ namespace VRPuzzler
             Score = 0;
         }
 
-        public void StartGame()
-        {          
-            GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.INTRO;
+        public void StartIntro()
+        {
+            // wait for a second, then start the intro
+            DOVirtual.DelayedCall(1, () => GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.INTRO);                 
         }
 
         private void IncreaseScore()
@@ -63,7 +65,7 @@ namespace VRPuzzler
             {
                 case(GameFSM.GAMESTATES.INIT):                                   
                 break;
-                case (GameFSM.GAMESTATES.INTRO):
+                case (GameFSM.GAMESTATES.INTRO):                   
                     break;
                 case (GameFSM.GAMESTATES.LOADING):
                     break;
