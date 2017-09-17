@@ -81,7 +81,8 @@ namespace VRPuzzler
             switch (m_sequenceState)
             {
                 case (SEQUENCESTATES.IDLE):
-                    InputController.Instance.DisableInput();
+                    //InputController.Instance.DisableInput();
+                    InputController.Instance.BlobInput(false);
                     DOVirtual.DelayedCall(2f,()=> SetUpSequence(m_currentSequenceID));                  
                     break;
                 case (SEQUENCESTATES.LISTENING):
@@ -132,7 +133,8 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         public void ValidateStep(int _id)
         {
-            InputController.Instance.DisableInput();
+            //InputController.Instance.DisableInput();
+            InputController.Instance.BlobInput(false);
             m_currentStepValid = (_id == m_currentSequence[m_currentStep]) ? true : false;
 
             if (SequenceState == SEQUENCESTATES.LISTENING)
@@ -144,7 +146,8 @@ namespace VRPuzzler
         private void ListenForSender()
         {
             m_sequenceStepInProgess = true;
-            InputController.Instance.EnableInput();
+            //InputController.Instance.EnableInput();
+            InputController.Instance.BlobInput(true);
             StartCoroutine(WaitingForSequenceStepToFinish());
         }
         //------------------------------------------------------------------------------------------------------------

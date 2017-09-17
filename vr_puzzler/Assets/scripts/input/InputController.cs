@@ -12,6 +12,9 @@ namespace VRPuzzler
 
         
         public GvrReticlePointer Pointer;
+        public SphereCollider[] Blobs;
+        public BoxCollider TutorialBlob;
+         
 
         public void DisableInput()
         {
@@ -25,5 +28,18 @@ namespace VRPuzzler
            Pointer.enabled = true;
         }
 
+        public void BlobInput(bool _valid)
+        {
+            foreach(SphereCollider _col in Blobs)
+            {
+                Debug.Log("Blob input: " + _valid);
+                _col.enabled = _valid;               
+            }
+        }
+        public void TutorialBlobInput(bool _valid)
+        {
+            Debug.Log("TutorialBlobInput input: " + _valid);
+            TutorialBlob.enabled = _valid;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace VRPuzzler
         public void IncreaseScore()
         {
             Debug.Log("SCORE INCREASED!!!");
-            Text.text = (GameController.Instance.Score + 1).ToString();
+            Text.text = (GameController.Instance.Score).ToString();
           
         }
 

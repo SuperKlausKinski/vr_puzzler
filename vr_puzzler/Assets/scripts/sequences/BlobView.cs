@@ -58,10 +58,10 @@ namespace VRPuzzler
             switch (GameFSM.Instance.Gamestate)
             {
                 case (GameFSM.GAMESTATES.INTRO):
-                    gameObject.GetComponent<SphereCollider>().enabled = false;
+                   
                     break;
                 case (GameFSM.GAMESTATES.GAME):
-                    gameObject.GetComponent<SphereCollider>().enabled = true;
+                    
                     break;
                 case (GameFSM.GAMESTATES.FINISH):
                     gameObject.GetComponent<SphereCollider>().enabled = false;

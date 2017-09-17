@@ -68,8 +68,9 @@ namespace VRPuzzler
                     TutorialBlob_Animator.SetTrigger("SWITCH");
 
                     // Shortly disable input
-                    InputController.Instance.DisableInput();
-                    DOVirtual.DelayedCall(1f, () => InputController.Instance.EnableInput());
+                    
+                    InputController.Instance.TutorialBlobInput(false);
+                    DOVirtual.DelayedCall(1f, () => InputController.Instance.TutorialBlobInput(true));
 
                     // turn off old step, increment steps, turn on new
                     
@@ -77,8 +78,8 @@ namespace VRPuzzler
                 else
                 {
                     TutorialBlob_Animator.SetTrigger("HIDE");
-                    
-                    InputController.Instance.DisableInput();
+
+                    InputController.Instance.TutorialBlobInput(false);
                     DOVirtual.DelayedCall(2.5f,()=> EventManager.Instance.InvokeEvent("TUTORIAL_COMPLETED"));                 
                 }
             }
@@ -96,7 +97,7 @@ namespace VRPuzzler
             OpenDoor();
             TutorialBlob_Animator.SetTrigger("SHOW");
             ContinueCard.SetActive(true);
-            InputController.Instance.DisableInput();          
+            InputController.Instance.TutorialBlobInput(false);
         }
         //---------------------------------------------------------------------
         public void AnimationEnd(string _clip)

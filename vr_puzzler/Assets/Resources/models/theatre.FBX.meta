@@ -28,6 +28,23 @@ ModelImporter:
     100040: stage 1
     100042: //RootNode
     100044: floor
+    100046: Bulb_flare_00
+    100048: Bulb_flare_01
+    100050: Bulb_flare_02
+    100052: Bulb_flare_03
+    100054: Bulb_flare_04
+    100056: Bulb_flare_05
+    100058: Bulb_flare_06
+    100060: Bulb_flare_07
+    100062: Bulb_flare_08
+    100064: Bulb_flare_09
+    100066: Bulb_flare_10
+    100068: Bulb_flare_11
+    100070: Bulb_flare_12
+    100072: Bulb_flare_13
+    100074: Bulb_flare_14
+    100076: Bulb_flare_15
+    100078: Bulb_flare_16
     400000: bulb_00
     400002: bulb_01
     400004: bulb_02
@@ -51,6 +68,23 @@ ModelImporter:
     400040: stage 1
     400042: //RootNode
     400044: floor
+    400046: Bulb_flare_00
+    400048: Bulb_flare_01
+    400050: Bulb_flare_02
+    400052: Bulb_flare_03
+    400054: Bulb_flare_04
+    400056: Bulb_flare_05
+    400058: Bulb_flare_06
+    400060: Bulb_flare_07
+    400062: Bulb_flare_08
+    400064: Bulb_flare_09
+    400066: Bulb_flare_10
+    400068: Bulb_flare_11
+    400070: Bulb_flare_12
+    400072: Bulb_flare_13
+    400074: Bulb_flare_14
+    400076: Bulb_flare_15
+    400078: Bulb_flare_16
     2300000: bulb_00
     2300002: bulb_01
     2300004: bulb_02
@@ -73,6 +107,23 @@ ModelImporter:
     2300038: stage
     2300040: stage 1
     2300042: floor
+    2300044: Bulb_flare_00
+    2300046: Bulb_flare_01
+    2300048: Bulb_flare_02
+    2300050: Bulb_flare_03
+    2300052: Bulb_flare_04
+    2300054: Bulb_flare_05
+    2300056: Bulb_flare_06
+    2300058: Bulb_flare_07
+    2300060: Bulb_flare_08
+    2300062: Bulb_flare_09
+    2300064: Bulb_flare_10
+    2300066: Bulb_flare_11
+    2300068: Bulb_flare_12
+    2300070: Bulb_flare_13
+    2300072: Bulb_flare_14
+    2300074: Bulb_flare_15
+    2300076: Bulb_flare_16
     3300000: bulb_00
     3300002: bulb_01
     3300004: bulb_02
@@ -95,6 +146,23 @@ ModelImporter:
     3300038: stage
     3300040: stage 1
     3300042: floor
+    3300044: Bulb_flare_00
+    3300046: Bulb_flare_01
+    3300048: Bulb_flare_02
+    3300050: Bulb_flare_03
+    3300052: Bulb_flare_04
+    3300054: Bulb_flare_05
+    3300056: Bulb_flare_06
+    3300058: Bulb_flare_07
+    3300060: Bulb_flare_08
+    3300062: Bulb_flare_09
+    3300064: Bulb_flare_10
+    3300066: Bulb_flare_11
+    3300068: Bulb_flare_12
+    3300070: Bulb_flare_13
+    3300072: Bulb_flare_14
+    3300074: Bulb_flare_15
+    3300076: Bulb_flare_16
     4300000: room
     4300002: bulb_00
     4300004: bulb_01
@@ -117,6 +185,23 @@ ModelImporter:
     4300038: stage
     4300040: stage
     4300042: floor
+    4300044: Bulb_flare_16
+    4300046: Bulb_flare_15
+    4300048: Bulb_flare_14
+    4300050: Bulb_flare_13
+    4300052: Bulb_flare_12
+    4300054: Bulb_flare_11
+    4300056: Bulb_flare_10
+    4300058: Bulb_flare_09
+    4300060: Bulb_flare_08
+    4300062: Bulb_flare_00
+    4300064: Bulb_flare_01
+    4300066: Bulb_flare_02
+    4300068: Bulb_flare_03
+    4300070: Bulb_flare_04
+    4300072: Bulb_flare_05
+    4300074: Bulb_flare_06
+    4300076: Bulb_flare_07
     7400000: Take 001
     9500000: //RootNode
   materials:

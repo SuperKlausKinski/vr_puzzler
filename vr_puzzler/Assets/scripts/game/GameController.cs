@@ -33,7 +33,8 @@ namespace VRPuzzler
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("INPUTSEQUENCE_COMPLETED", listenForSequenceCompleted);
             EventManager.Instance.StartListening("TUTORIAL_COMPLETED", listenForTutorialComplete);
-            
+            InputController.Instance.TutorialBlobInput(false);
+            InputController.Instance.BlobInput(false);
             DOVirtual.DelayedCall(1, () => StartIntro());
         }
 
@@ -65,7 +66,8 @@ namespace VRPuzzler
             {
                 case(GameFSM.GAMESTATES.INIT):                                   
                 break;
-                case (GameFSM.GAMESTATES.INTRO):                   
+                case (GameFSM.GAMESTATES.INTRO):
+                    InputController.Instance.TutorialBlobInput(true);
                     break;
                 case (GameFSM.GAMESTATES.LOADING):
                     break;
