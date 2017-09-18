@@ -18,12 +18,12 @@ namespace VRPuzzler
         //-------------------------------------------------------------------------------------------------------
         public void Awake()
         {
+            BlockingSphere.SetActive(true);
             m_MaterialRenderer = BlockingSphere.GetComponent<MeshRenderer>();
         }
         //-------------------------------------------------------------------------------------------------------
         public void Start()
-        {
-            
+        {           
             listenForChange = new UnityAction(OnGameStateChanged);
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
         }
@@ -40,6 +40,7 @@ namespace VRPuzzler
         //-------------------------------------------------------------------------------------------------------
         private void OnGameStateChanged()
         {
+            Debug.Log("fade!");
             switch (GameFSM.Instance.Gamestate)
             {
                 case (GameFSM.GAMESTATES.INTRO):
@@ -52,6 +53,7 @@ namespace VRPuzzler
         //-------------------------------------------------------------------------------------------------------
         IEnumerator StartFade(int _direction)
         {
+           
             CanvasGroup.gameObject.SetActive(true);
    
             while (CanvasGroup.alpha > 0)

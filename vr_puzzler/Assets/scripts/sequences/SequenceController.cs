@@ -45,7 +45,7 @@ namespace VRPuzzler
         void Start()
         {
 
-            InitSequenceController();
+            
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", ListenForStateChange);
         }
         void Awake()
@@ -58,6 +58,7 @@ namespace VRPuzzler
             switch (GameFSM.Instance.Gamestate)
             {
                 case (GameFSM.GAMESTATES.GAME):
+                    InitSequenceController();
                     SequenceState = SEQUENCESTATES.IDLE;
                     break;
                 case (GameFSM.GAMESTATES.FINISH):
@@ -81,7 +82,7 @@ namespace VRPuzzler
             switch (m_sequenceState)
             {
                 case (SEQUENCESTATES.IDLE):
-                    //InputController.Instance.DisableInput();
+               
                     InputController.Instance.BlobInput(false);
                     DOVirtual.DelayedCall(2f,()=> SetUpSequence(m_currentSequenceID));                  
                     break;
@@ -94,6 +95,7 @@ namespace VRPuzzler
                     TriggerReceiver(m_currentSequence[m_currentStep]);
                     break;
                 case (SEQUENCESTATES.FINISH):
+                    EventManager.Instance.InvokeEvent("FINISH");
                     break;
             }
         }
@@ -106,7 +108,8 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         public void SetUpSequence(int _sequenceID)
         {
-           
+            Debug.Log("setting sequence");
+            Debug.Log("prevstate= " + m_prevSequencestate);
             m_currentStep = 0;
             m_currentSequenceID = _sequenceID;
             m_currentSequence = GetSequence(m_currentSequenceID);
@@ -126,6 +129,9 @@ namespace VRPuzzler
                     {
                         SequenceState = SEQUENCESTATES.PRESENTING;
                     }
+                    break;
+                case (SEQUENCESTATES.FINISH):
+                    SequenceState = SEQUENCESTATES.PRESENTING;
                     break;
             }
 
@@ -186,13 +192,17 @@ namespace VRPuzzler
                     else
                     {
                         EventManager.Instance.InvokeEvent("INPUTSEQUENCE_COMPLETED");
+                        Debug.Log(m_currentSequenceID);
+                        Debug.Log(m_totalSequenceCount);
+                        m_currentSequenceID++;
                         if (m_currentSequenceID < m_totalSequenceCount)
                         {
-                            m_currentSequenceID++;
+                            
                             SequenceState = SEQUENCESTATES.IDLE;
                         }
                         else
                         {
+                            EventManager.Instance.InvokeEvent("INPUTSEQUENCES_FINISHED");
                             SequenceState = SEQUENCESTATES.FINISH;
                         }
                     }

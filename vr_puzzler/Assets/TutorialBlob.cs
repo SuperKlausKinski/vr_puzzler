@@ -11,6 +11,7 @@ namespace VRPuzzler
     {
         public GameObject[] TutorialStep;
         public GameObject ContinueCard;
+        public GameObject[] FinishStep;
         public Animator TutorialBlob_Animator;      
         public GameObject Door;
         public GvrAudioSource CardFlipAudioSource;
@@ -21,27 +22,27 @@ namespace VRPuzzler
         public AudioClip CardFlipAudioClip;
         public AudioClip Swosh;
         //---------------------------------------------------------------------
-        private int m_currentTutorialStep;
+        private int m_currentCardStep;
+        private GameObject[] m_currentStepsGameObjects;
         private UnityAction listenForChange;
         private UnityAction listenForSequenceComplete;
+ 
         private Animator m_door_Animator;
         private GvrAudioSource m_door_Audio;
         private Action m_callBack;
         //---------------------------------------------------------------------
         void Awake()
         {
-            foreach (GameObject _go in TutorialStep)
-            {
-                _go.SetActive(false);
-            }
 
-            ContinueCard.SetActive(false);
-
+            HideAllCards();
             TutorialBlob_Animator.gameObject.SetActive(false);
             listenForChange = new UnityAction(StateChanged);
             listenForSequenceComplete = new UnityAction(ShowContinueCard);
+ 
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("SEQUENCE_COMPLETED", listenForSequenceComplete);
+            EventManager.Instance.StartListening("SEQUENCE_COMPLETED", listenForSequenceComplete);
+
         }
         //---------------------------------------------------------------------
         void Start()
@@ -58,11 +59,10 @@ namespace VRPuzzler
         //---------------------------------------------------------------------
         public void CardClicked(string _cardType)
         {
-            if (GameFSM.Instance.Gamestate != GameFSM.GAMESTATES.INTRO) { return; }
+           // if (GameFSM.Instance.Gamestate != GameFSM.GAMESTATES.INTRO||GameFSM.Instance.Gamestate != GameFSM.GAMESTATES.FINISH) { return; }
             /// if card type tutorial, play switch animation and replace card with the next one, increment tutorial steps by one
-            if (_cardType == "TUTORIAL")
-            {
-                if (m_currentTutorialStep < TutorialStep.Length-1)
+       
+                if (m_currentCardStep < m_currentStepsGameObjects.Length-1)
                 {
                                      
                     TutorialBlob_Animator.SetTrigger("SWITCH");
@@ -80,13 +80,14 @@ namespace VRPuzzler
                     TutorialBlob_Animator.SetTrigger("HIDE");
 
                     InputController.Instance.TutorialBlobInput(false);
-                    DOVirtual.DelayedCall(2.5f,()=> EventManager.Instance.InvokeEvent("TUTORIAL_COMPLETED"));                 
+                    DOVirtual.DelayedCall(2.5f,()=> EventManager.Instance.InvokeEvent("TUTORIAL_COMPLETED"));
+                if (GameFSM.Instance.Gamestate == GameFSM.GAMESTATES.FINISH)
+                {
+                    GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.GAME;
+                }                
                 }
-            }
-            else if (_cardType == "WIN")
-            {
-                // show you won card with restart message
-            }
+                
+      
         }
         //---------------------------------------------------------------------
         public void ShowContinueCard()
@@ -121,13 +122,13 @@ namespace VRPuzzler
         {
             if(_alpha == 0)
             {
-                TutorialStep[m_currentTutorialStep].SetActive(false);
-                m_currentTutorialStep++;
-                TutorialStep[m_currentTutorialStep].SetActive(true);
+                m_currentStepsGameObjects[m_currentCardStep].SetActive(false);
+                m_currentCardStep++;
+                m_currentStepsGameObjects[m_currentCardStep].SetActive(true);
             }
            
             TutorialCanvas.GetComponent<CanvasGroup>().alpha = _alpha;
-            if (m_currentTutorialStep < TutorialStep.Length)
+            if (m_currentCardStep < m_currentStepsGameObjects.Length)
             {
                 CardFlipAudioSource.clip = CardFlipAudioClip;
                 CardFlipAudioSource.Play();
@@ -145,29 +146,32 @@ namespace VRPuzzler
             switch (GameFSM.Instance.Gamestate)
             {
                 case (GameFSM.GAMESTATES.INTRO):
-                    Debug.Log("START TUTORIAL");
-                    StartTutorial();
+                    m_currentStepsGameObjects = TutorialStep;
+                    StartShowingCards();
                     break;
                 case (GameFSM.GAMESTATES.GAME):
                     CleanUpTutorial();
                     break;
                 case (GameFSM.GAMESTATES.FINISH):
-                    StartWin();
+                    m_currentStepsGameObjects = FinishStep;
+                    StartShowingCards();
                     break;
             }
         }
         //---------------------------------------------------------------------
-        private void StartTutorial()
-        {          
-            m_currentTutorialStep = 0;
+        private void StartShowingCards()
+        {
+                      
+            m_currentCardStep = 0;
             TutorialBlob_Animator.speed = 1;
             m_door_Animator.speed = 1;
             OpenDoor();
 
-            TutorialStep[m_currentTutorialStep].SetActive(true);
-            
+            m_currentStepsGameObjects[m_currentCardStep].SetActive(true);
+            Debug.Log(m_currentStepsGameObjects.Length);
             DOVirtual.DelayedCall(1f, () => TutorialBlob_Animator.gameObject.SetActive(true));
             DOVirtual.DelayedCall(1f, () => TutorialBlob_Animator.SetTrigger("SHOW"));
+            InputController.Instance.TutorialBlobInput(true);
         }
         private void OpenDoor()
         {
@@ -186,12 +190,22 @@ namespace VRPuzzler
         private void CleanUpTutorial()
         {
             CloseDoor();
+            HideAllCards();
             TutorialBlob_Animator.gameObject.SetActive(false);
         }
         //---------------------------------------------------------------------
-        private void StartWin()
+        private void HideAllCards()
         {
+            foreach (GameObject _go in TutorialStep)
+            {
+                _go.SetActive(false);
+            }
+            foreach (GameObject _go in FinishStep)
+            {
+                _go.SetActive(false);
+            }
 
+            ContinueCard.SetActive(false);
         }
         //---------------------------------------------------------------------
     }

@@ -14,8 +14,8 @@ namespace VRPuzzler
         private UnityAction listenForExit;
         private UnityAction listenForChange;
         private UnityAction listenForSequenceCompleted;
+        private UnityAction listenForAllSequencesCompleted;
 
-        
         public int Score { get; private set; }
 
         new void Awake()
@@ -23,9 +23,10 @@ namespace VRPuzzler
             base.Awake();
             // listeners
             listenForExit = new UnityAction(OnGameStateExit);
-            listenForChange = new UnityAction(OnGamstateChange);
+            listenForChange = new UnityAction(OnGameStateChange);
             listenForSequenceCompleted = new UnityAction(IncreaseScore);
             listenForTutorialComplete = new UnityAction(TutorialComplete);
+            listenForAllSequencesCompleted = new UnityAction(AllSequencesCompleted);
         }
 
         void Start()
@@ -33,6 +34,7 @@ namespace VRPuzzler
             EventManager.Instance.StartListening("GAMESTATE_CHANGED", listenForChange);
             EventManager.Instance.StartListening("INPUTSEQUENCE_COMPLETED", listenForSequenceCompleted);
             EventManager.Instance.StartListening("TUTORIAL_COMPLETED", listenForTutorialComplete);
+            EventManager.Instance.StartListening("INPUTSEQUENCES_FINISHED", listenForAllSequencesCompleted);
             InputController.Instance.TutorialBlobInput(false);
             InputController.Instance.BlobInput(false);
             DOVirtual.DelayedCall(1, () => StartIntro());
@@ -58,8 +60,11 @@ namespace VRPuzzler
         {
             GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.GAME;
         }
-
-        private void OnGamstateChange()
+        private void AllSequencesCompleted()
+        {
+            GameFSM.Instance.Gamestate = GameFSM.GAMESTATES.FINISH;
+        }
+        private void OnGameStateChange()
         {
 
             switch (GameFSM.Instance.Gamestate)
