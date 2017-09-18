@@ -8,18 +8,28 @@ ModelImporter:
     100000: //RootNode
     100002: tutorial_blob_hands
     100004: tutorial_card
+    100006: Star001
+    100008: Star
     400000: //RootNode
     400002: tutorial_blob_hands
     400004: tutorial_card
+    400006: Star001
+    400008: Star
     2300000: //RootNode
     2300002: tutorial_blob_hands
     2300004: tutorial_card
+    2300006: Star001
+    2300008: Star
     3300000: //RootNode
     3300002: tutorial_blob_hands
     3300004: tutorial_card
+    3300006: Star001
+    3300008: Star
     4300000: Tutorial_blob
     4300002: tutorial_blob_hands
     4300004: tutorial_card
+    4300006: Star001
+    4300008: Star
     7400000: Show
     7400002: Jump
     7400004: Switch
