@@ -78,7 +78,7 @@ namespace VRPuzzler
                 else
                 {
                     TutorialBlob_Animator.SetTrigger("HIDE");
-                Debug.Break();
+           
                     InputController.Instance.TutorialBlobInput(false);
                     DOVirtual.DelayedCall(2.5f,()=> EventManager.Instance.InvokeEvent("TUTORIAL_COMPLETED"));
                 if (GameFSM.Instance.Gamestate == GameFSM.GAMESTATES.FINISH)
