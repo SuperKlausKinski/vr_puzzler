@@ -506,8 +506,25 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -14.152
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 78715998}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 78715998}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114149311946854144, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &78715997 stripped
@@ -3909,18 +3926,25 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 5.3980002
       objectReference: {fileID: 0}
-    - target: {fileID: 114564398873657022, guid: 0ac59c0680aadae4792a19312258e28c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1154424386}
-    - target: {fileID: 114564398873657022, guid: 0ac59c0680aadae4792a19312258e28c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Sing
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1154424384}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114149311946854144, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1154424383 stripped
@@ -4138,18 +4162,25 @@ Prefab:
       propertyPath: m_Name
       value: Blob (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 114564398873657022, guid: 0ac59c0680aadae4792a19312258e28c,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1217439888}
-    - target: {fileID: 114564398873657022, guid: 0ac59c0680aadae4792a19312258e28c,
-        type: 2}
+      objectReference: {fileID: 1217439886}
+    - target: {fileID: 0}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Sing
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1217439886}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114149311946854144, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1217439885 stripped
@@ -5324,8 +5355,17 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -9.701
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1531451963}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114149311946854144, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1531451962 stripped
@@ -5568,8 +5608,25 @@ Prefab:
       propertyPath: m_Name
       value: Blob (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1662686289}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1662686289}
+    - target: {fileID: 0}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114149311946854144, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 0ac59c0680aadae4792a19312258e28c, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1662686288 stripped

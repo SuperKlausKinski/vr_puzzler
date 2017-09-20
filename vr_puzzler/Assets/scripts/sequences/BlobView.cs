@@ -31,6 +31,7 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         void Awake()
         {
+            AddEventTriggers();
             InitTriggerDictionary();
             Controller = gameObject.GetComponentInParent<SequenceController>();
             listenForChange = new UnityAction(OnGameStateChanged);
@@ -62,7 +63,7 @@ namespace VRPuzzler
             EventTrigger trigger = GetComponent<EventTrigger>();
             EventTrigger.Entry hoverEvent = new EventTrigger.Entry();
             EventTrigger.Entry clickEvent = new EventTrigger.Entry();
-            hoverEvent.eventID = EventTriggerType.PointerDown;
+            hoverEvent.eventID = EventTriggerType.PointerEnter;
             clickEvent.eventID = EventTriggerType.PointerClick;
             hoverEvent.callback.AddListener((data) => OnHover());
             clickEvent.callback.AddListener((data) => Sing());
@@ -72,7 +73,7 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         private void InitTriggerDictionary()
         {
-            m_blobAnimationTriggers.Add(BLOBSTATES.HOVER, new string[] { "FOCUS" });
+            m_blobAnimationTriggers.Add(BLOBSTATES.HOVER, new string[] { "FOCUS", "RAISE_HANDS", "JUMP" });
             m_blobAnimationTriggers.Add(BLOBSTATES.IDLE, new string[] { "IDLE_00", "IDLE_01" });
             m_blobAnimationTriggers.Add(BLOBSTATES.JUMP, new string[] { "JUMP" });
             m_blobAnimationTriggers.Add(BLOBSTATES.MISS, new string[] { "MISS_00", "MISS_01" });
@@ -84,7 +85,7 @@ namespace VRPuzzler
         {
             
             string[] _triggers = m_blobAnimationTriggers[_state];
-            string _trigger = (_triggers.Length > 0) ? _triggers[UnityEngine.Random.Range(0, _triggers.Length-1)] : _triggers[0];
+            string _trigger = (_triggers.Length > 0) ? _triggers[UnityEngine.Random.Range(0, _triggers.Length)] : _triggers[0];
             Debug.Log("Trigger:" + _trigger);
             Animator.SetTrigger(_trigger);
         }
