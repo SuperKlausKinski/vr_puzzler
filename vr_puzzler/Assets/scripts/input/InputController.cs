@@ -32,7 +32,7 @@ namespace VRPuzzler
         {
             foreach(SphereCollider _col in Blobs)
             {
-                Debug.Log("Blob input: " + _valid);
+               // Debug.Log("Blob input: " + _valid);
                 _col.enabled = _valid;               
             }
         }

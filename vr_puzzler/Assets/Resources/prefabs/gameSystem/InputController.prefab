@@ -51,4 +51,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4512faaf268ef64a9d508a7bb650932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventSystem: {fileID: 0}
+  Pointer: {fileID: 0}
+  Blobs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  TutorialBlob: {fileID: 0}
