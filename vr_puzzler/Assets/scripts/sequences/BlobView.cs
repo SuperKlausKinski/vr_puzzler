@@ -56,6 +56,7 @@ namespace VRPuzzler
                 Blobstate = BLOBSTATES.SING;
                 SendMessageUpwards("ValidateStep", BlobID);
             }
+          //  Debug.Break();
         }
         //------------------------------------------------------------------------------------------------------------
         private void AddEventTriggers()
@@ -85,18 +86,27 @@ namespace VRPuzzler
         {
             
             string[] _triggers = m_blobAnimationTriggers[_state];
-            string _trigger = (_triggers.Length > 0) ? _triggers[UnityEngine.Random.Range(0, _triggers.Length)] : _triggers[0];
-            Debug.Log("Trigger:" + _trigger);
+            string _trigger = (_triggers.Length > 0) ? _triggers[UnityEngine.Random.Range(0, _triggers.Length-1)] : _triggers[0];
+            Debug.LogFormat("Trigger {0} on {1}, choosen from {2} triggers",_state,gameObject.name,_triggers.Length);
+       
             Animator.SetTrigger(_trigger);
+            
+          //  Debug.Break();
         }
-        public void AnimationComplete(string _stateAsString)
+        public void AnimationComplete(string _finishedAnimation)
         {
-            if (_stateAsString == BLOBSTATES.SING.ToString())
+            Debug.Log(_finishedAnimation + " is complete for" + gameObject.name + "in state " + Blobstate);
+            if (_finishedAnimation == BLOBSTATES.SING.ToString())
             {
-                SendMessageUpwards("SequenceStepCompleted", BlobID);             
+                Debug.Log("Sing completed");
+                SendMessageUpwards("SequenceStepCompleted", BlobID);
+                Blobstate = BLOBSTATES.IDLE;
+                return;
             }
-            if (_stateAsString != BLOBSTATES.IDLE.ToString())
+            if (Blobstate == BLOBSTATES.SING) return; // we're entering from another animation state here, which could interrupt the singing
+            if (_finishedAnimation != BLOBSTATES.IDLE.ToString())  // we do not want to be idling like crazy, don't we?
             {
+                Debug.Log("I am not blobstate sing? I'm " + Blobstate);
                 Blobstate = BLOBSTATES.IDLE;
             }
            
@@ -135,10 +145,16 @@ namespace VRPuzzler
             }
         }
         //------------------------------------------------------------------------------------------------------------
-        private void OnSingComplete()
+        private void OnSingComplete(string _stateAsString)
         {
-            SendMessageUpwards("SequenceStepCompleted", BlobID);
-            Blobstate = BLOBSTATES.IDLE;
+            Debug.Log(_stateAsString + " is complete for" + gameObject.name + "in state " + Blobstate);
+            if (_stateAsString == BLOBSTATES.SING.ToString())
+            {
+                Debug.Log("Sing completed");
+                SendMessageUpwards("SequenceStepCompleted", BlobID);
+                Blobstate = BLOBSTATES.IDLE;
+                return;
+            }
         }
     }
 }

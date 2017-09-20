@@ -8,7 +8,7 @@ namespace VRPuzzler
     public class SequenceTemplate : ScriptableObject
     {
         
-        public GameObject[] SequenceReceivers;
+       
         public int[] Sequence;
      
     }

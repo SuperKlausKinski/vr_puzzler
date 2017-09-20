@@ -119,12 +119,15 @@ namespace VRPuzzler
             switch (m_prevSequencestate)
             {
                 case (SEQUENCESTATES.PRESENTING):
+                    Debug.Log("PRESENTING-----------------------------------------------------");
                     SequenceState = SEQUENCESTATES.LISTENING;
                     break;
                 case (SEQUENCESTATES.LISTENING):
+                    Debug.Log("LISTENING-----------------------------------------------------");
                     SequenceState = SEQUENCESTATES.PRESENTING;
                     break;
                 case (SEQUENCESTATES.IDLE):
+                    Debug.Log("IDLE-----------------------------------------------------");
                     if (m_prevSequencestate == SEQUENCESTATES.IDLE)
                     {
                         SequenceState = SEQUENCESTATES.PRESENTING;
@@ -139,7 +142,7 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         public void ValidateStep(int _id)
         {
-            //InputController.Instance.DisableInput();
+            
             InputController.Instance.BlobInput(false);
             m_currentStepValid = (_id == m_currentSequence[m_currentStep]) ? true : false;
 

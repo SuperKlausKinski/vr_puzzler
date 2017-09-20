@@ -40,7 +40,7 @@ namespace VRPuzzler
         //-------------------------------------------------------------------------------------------------------
         private void OnGameStateChanged()
         {
-            Debug.Log("fade!");
+            
             switch (GameFSM.Instance.Gamestate)
             {
                 case (GameFSM.GAMESTATES.INTRO):
