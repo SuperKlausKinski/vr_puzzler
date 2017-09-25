@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 135669869098513670}
   - component: {fileID: 114832448086855006}
   - component: {fileID: 114129745795896146}
+  - component: {fileID: 114487160228836906}
   m_Layer: 0
   m_Name: Blob
   m_TagString: Untagged
@@ -117,8 +118,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1769421579932546}
   m_LocalRotation: {x: 0.00000002183145, y: -0.047088172, z: 0.0000000010291447, w: 0.99889076}
-  m_LocalPosition: {x: 0.35, y: -0.33699998, z: -1.27}
-  m_LocalScale: {x: 2.06324, y: 2.0632403, z: 2.0632403}
+  m_LocalPosition: {x: 0.49, y: -0.65, z: -1.26}
+  m_LocalScale: {x: 1.2983751, y: 2.2785826, z: 1.2983752}
   m_Children: []
   m_Father: {fileID: 4720301891848188}
   m_RootOrder: 1
@@ -129,8 +130,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1894426633086424}
-  m_LocalRotation: {x: -0, y: 0.047088172, z: -0, w: 0.99889076}
-  m_LocalPosition: {x: -1.598, y: 0.554, z: -3.348}
+  m_LocalRotation: {x: 0, y: 0.39802858, z: 0, w: 0.917373}
+  m_LocalPosition: {x: -2.74, y: 0.554, z: -1.986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4109947189165842}
@@ -178,7 +179,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: fbc6ca258065e724180ae0b7128728e0, type: 2}
+  - {fileID: 2100000, guid: 66158a466b411d14eab58183e8578c77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -210,7 +211,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e6c3f399669e7b546a87268bfbeb8d0f, type: 2}
+  - {fileID: 2100000, guid: 3db6234743819324abff0d1e361cc50f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -271,11 +272,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509ccd087870ab44ca649622ff480c02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlobID: 1
+  BlobID: 0
   Animator: {fileID: 95143825550244392}
   BlobSound: {fileID: 0}
   BlobObject: {fileID: 1222329890874518}
   BlobFlare: {fileID: 1769421579932546}
+--- !u!114 &114487160228836906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1894426633086424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dbca64e524ea44f9b26142ec59aca8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 0
+  occlusionEnabled: 0
+  playOnAwake: 0
+  sourceClip: {fileID: 0}
+  sourceLoop: 0
+  sourceMute: 0
+  sourcePitch: 1
+  sourcePriority: 128
+  sourceSpatialBlend: 1
+  sourceDopplerLevel: 1
+  sourceSpread: 0
+  sourceVolume: 1
+  sourceRolloffMode: 0
+  sourceMaxDistance: 500
+  sourceMinDistance: 1
+  hrtfEnabled: 1
+  audioSource: {fileID: 0}
 --- !u!114 &114832448086855006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,7 +394,7 @@ SkinnedMeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e6c3f399669e7b546a87268bfbeb8d0f, type: 2}
+  - {fileID: 2100000, guid: 3db6234743819324abff0d1e361cc50f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -31,9 +31,12 @@ namespace VRPuzzler
         private Dictionary<BLOBSTATES, string[]> m_blobAnimationTriggers = new Dictionary<BLOBSTATES, string[]>();
         private SequenceController Controller;
         private Color32 m_blobColor;
+        private GvrAudioSource m_gvrAudioSource;
         //------------------------------------------------------------------------------------------------------------
         void Awake()
         {
+            m_gvrAudioSource = GetComponent<GvrAudioSource>();
+            m_gvrAudioSource.clip = BlobSound;
             AddEventTriggers();
             InitTriggerDictionary();
             Controller = gameObject.GetComponentInParent<SequenceController>();
@@ -59,8 +62,8 @@ namespace VRPuzzler
             Debug.Log("I sing now!!!");
                 Blobstate = BLOBSTATES.SING;
                 SendMessageUpwards("ValidateStep", BlobID);
-            
-          //  Debug.Break();
+            m_gvrAudioSource.Play();
+      
         }
         //------------------------------------------------------------------------------------------------------------
         private void AddEventTriggers()
