@@ -24,10 +24,13 @@ namespace VRPuzzler
         public int BlobID;
         public Animator Animator;
         public AudioClip BlobSound;
+        public GameObject BlobObject;
+        public GameObject BlobFlare;
         //------------------------------------------------------------------------------------------------------------
         private BLOBSTATES m_blobState;
         private Dictionary<BLOBSTATES, string[]> m_blobAnimationTriggers = new Dictionary<BLOBSTATES, string[]>();
         private SequenceController Controller;
+        private Color32 m_blobColor;
         //------------------------------------------------------------------------------------------------------------
         void Awake()
         {
@@ -35,6 +38,8 @@ namespace VRPuzzler
             InitTriggerDictionary();
             Controller = gameObject.GetComponentInParent<SequenceController>();
             listenForChange = new UnityAction(OnGameStateChanged);
+            BlobFlare.SetActive(false);
+            m_blobColor = BlobObject.GetComponent<Renderer>().material.color;
         }
         void Start()
         {
@@ -51,11 +56,10 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         public void Sing()
         {
-            if (Blobstate != BLOBSTATES.SING)
-            {
+            Debug.Log("I sing now!!!");
                 Blobstate = BLOBSTATES.SING;
                 SendMessageUpwards("ValidateStep", BlobID);
-            }
+            
           //  Debug.Break();
         }
         //------------------------------------------------------------------------------------------------------------
@@ -95,6 +99,7 @@ namespace VRPuzzler
         }
         public void AnimationComplete(string _finishedAnimation)
         {
+            //Debug.Break();
             Debug.Log(_finishedAnimation + " is complete for" + gameObject.name + "in state " + Blobstate);
             if (_finishedAnimation == BLOBSTATES.SING.ToString())
             {
@@ -134,6 +139,7 @@ namespace VRPuzzler
         //------------------------------------------------------------------------------------------------------------
         private void changeState(BLOBSTATES _state)
         {
+            Debug.Log("changing animation state to" + _state);
             m_blobState = _state;
             TriggerAnimation(m_blobState);
             switch (m_blobState)
@@ -143,6 +149,23 @@ namespace VRPuzzler
                 case (BLOBSTATES.SING):
                     break;
             }
+        }
+        //------------------------------------------------------------------------------------------------------------
+        public void CheckForSingState()  // hack to prevent the idle overwriting the sing trigger if the blob sings to times in a row
+        {
+            if(Blobstate == BLOBSTATES.SING)
+            {
+                TriggerAnimation(m_blobState);
+            }
+        }
+        //------------------------------------------------------------------------------------------------------------
+        private void ShowblobFlare()
+        {
+            BlobFlare.SetActive(true);
+            Material _material = BlobFlare.GetComponent<MeshRenderer>().material;     
+            _material.SetColor("_TintColor",Color.black);
+           
+            _material.DOColor(m_blobColor,"_TintColor", 0.75f).SetEase(Ease.InOutBack).OnComplete(() => BlobFlare.SetActive(false));
         }
         //------------------------------------------------------------------------------------------------------------
         private void OnSingComplete(string _stateAsString)

@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ec79cc0fdb7c204c9048ddd03330698, type: 3}
-  m_Name: Sequence_00
+  m_Name: Sequence_02
   m_EditorClassIdentifier: 
-  Sequence: 0200000002000000
+  Sequence: 02000000010000000400000003000000

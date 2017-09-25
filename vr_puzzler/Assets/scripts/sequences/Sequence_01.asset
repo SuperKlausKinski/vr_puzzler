@@ -11,11 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec79cc0fdb7c204c9048ddd03330698, type: 3}
   m_Name: Sequence_01
   m_EditorClassIdentifier: 
-  SequenceReceivers:
-  - {fileID: 1445591035880750, guid: 788f1408aed932743906ea9a19268e2e, type: 2}
-  - {fileID: 1613902950879204, guid: c843754dc48c3d0459634086d1ee813d, type: 2}
-  - {fileID: 1166964144029292, guid: 971c9519101c54c4cb420d9c06d92729, type: 2}
-  - {fileID: 1507200917521350, guid: ef4f1b965386d8748bb8b886056aa7b7, type: 2}
-  - {fileID: 1180812462931914, guid: 11654e75e2ddf74478411c9410ca3738, type: 2}
-  - {fileID: 1725068033289918, guid: 7191c28c524c62b4fad3667d5de10a38, type: 2}
-  Sequence: 000000000100000001000000
+  Sequence: 000000000100000002000000
